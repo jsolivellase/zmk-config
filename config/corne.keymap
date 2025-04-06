@@ -9,54 +9,56 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-    behaviors {
-        layer_hold_tap: layer_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_HOLD_TAP";
-            bindings = <&mo>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <180>;
-            flavor = "balanced";
-        };
+    &lt {
+        tapping-term-ms = <180>;
+        flavor = "balanced";
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        base {
             bindings = <
-&kp GRAVE                  &kp Q  &kp W  &kp E            &kp R                    &kp T      &kp Y          &kp U                    &kp I                  &kp O    &kp P          &kp MINUS
-&mt LEFT_CONTROL CAPSLOCK  &kp A  &kp S  &kp D            &kp F                    &kp G      &kp H          &kp J                    &kp K                  &kp L    &kp SEMICOLON  &kp SINGLE_QUOTE
-&kp EQUAL                  &kp Z  &kp X  &kp C            &kp V                    &kp B      &kp N          &kp M                    &kp COMMA              &kp DOT  &kp SLASH      &kp BACKSLASH
-                                         &mt RALT ESCAPE  &layer_hold_tap 1 SPACE  &kp TAB    &kp BACKSPACE  &layer_hold_tap 2 ENTER  &mt LEFT_SHIFT DELETE
+&kp GRAVE                  &kp Q  &kp W  &kp E            &kp R        &kp T        &kp Y            &kp U        &kp I                  &kp O    &kp P          &kp MINUS
+&mt LEFT_CONTROL CAPSLOCK  &kp A  &kp S  &kp D            &kp F        &kp G        &kp H            &kp J        &kp K                  &kp L    &kp SEMICOLON  &kp SINGLE_QUOTE
+&kp LEFT_GUI               &kp Z  &kp X  &kp C            &kp V        &kp B        &kp N            &kp M        &kp COMMA              &kp DOT  &kp SLASH      &kp BACKSLASH
+                                         &mt RALT ESCAPE  &lt 1 SPACE  &lt 4 TAB    &lt 3 BACKSPACE  &lt 2 ENTER  &mt LEFT_SHIFT DELETE
             >;
         };
 
-        lower_layer {
+        nav {
             bindings = <
-&trans  &kp N1        &kp N2        &kp N3            &kp N4          &kp N5           &kp N6    &kp N7         &kp N8       &kp N9     &kp N0  &trans
-&none   &sk LEFT_GUI  &sk LEFT_ALT  &sk LEFT_CONTROL  &sk LEFT_SHIFT  &sk RIGHT_ALT    &kp LEFT  &kp DOWN       &kp UP       &kp RIGHT  &none   &trans
-&trans  &kp LC(Z)     &kp LC(X)     &kp LC(C)         &kp LC(V)       &kp LEFT_GUI     &kp HOME  &kp PAGE_DOWN  &kp PAGE_UP  &kp END    &none   &trans
-                                    &trans            &trans          &trans           &trans    &mo 3          &trans
+&trans  &none         &none         &none             &none           &none            &kp LC(Y)  &kp LC(V)      &kp LC(C)    &kp LC(X)  &kp LC(Z)  &trans
+&none   &sk LEFT_GUI  &sk LEFT_ALT  &sk LEFT_CONTROL  &sk LEFT_SHIFT  &sk RIGHT_ALT    &kp LEFT   &kp DOWN       &kp UP       &kp RIGHT  &none      &trans
+&trans  &kp LC(Z)     &kp LC(X)     &kp LC(C)         &kp LC(V)       &kp LEFT_GUI     &kp HOME   &kp PAGE_DOWN  &kp PAGE_UP  &kp END    &none      &trans
+                                    &trans            &trans          &trans           &trans     &trans         &trans
             >;
         };
 
-        raise_layer {
+        num {
             bindings = <
-&trans  &kp EXCLAMATION   &kp AT_SIGN     &kp HASH           &kp DOLLAR       &kp PERCENT      &kp CARET  &kp AMPERSAND     &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans
-&none   &sk LEFT_GUI      &sk LEFT_ALT    &sk LEFT_CONTROL   &sk LEFT_SHIFT   &sk RIGHT_ALT    &none      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &none                 &trans                 &trans
-&trans  &kp C_PLAY_PAUSE  &kp C_PREVIOUS  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT       &none      &kp LEFT_BRACE    &kp RIGHT_BRACE    &trans                &trans                 &trans
-                                          &trans             &mo 3            &trans           &trans     &trans            &trans
+&trans  &none      &kp N7        &kp N8        &kp N9        &kp EQUAL    &none   &none   &none   &none   &none   &trans
+&none   &kp PLUS   &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTRK    &none   &none   &none   &none   &trans  &trans
+&trans  &kp MINUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SLASH    &none   &none   &none   &trans  &trans  &trans
+                                 &kp COMMA     &kp N0        &trans       &trans  &trans  &trans
             >;
         };
 
-        adjust_layer {
+        sym {
             bindings = <
-&none       &kp F1        &kp F2        &kp F3            &kp F4          &kp F5           &kp F6           &kp F7  &kp F8   &kp F9   &kp F10  &none
-&none       &sk LEFT_GUI  &sk LEFT_ALT  &sk LEFT_CONTROL  &sk LEFT_SHIFT  &sk RIGHT_ALT    &kp F5           &kp F12 &kp F10  &kp F11  &none    &none
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3    &bt BT_SEL 4     &studio_unlock   &none   &none    &none    &none    &none
-                                        &trans            &trans          &trans           &trans           &trans  &trans
+&kp TILDE     &kp EXCL       &kp AT     &kp HASH              &kp DOLLAR             &kp PERCENT          &kp CARET         &none              &kp ASTRK         &none      &none          &trans
+&kp QUESTION  &kp PLUS       &kp EQUAL  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp DOUBLE_QUOTES    &kp SINGLE_QUOTE  &kp RIGHT_BRACKET  &kp LEFT_BRACKET  &kp COLON  &kp SEMICOLON  &trans
+&trans        &kp LESS_THAN  &kp PIPE   &kt MINUS             &kp GREATER_THAN       &kp AMPERSAND        &kp UNDER         &kp RIGHT_BRACE    &kp LEFT_BRACE    &kp DOT    &trans         &trans
+                                        &trans                &trans                 &trans               &trans            &trans             &trans
+            >;
+        };
+
+        fun {
+            bindings = <
+&none       &kp F1        &kp F2        &kp F3            &kp F4          &kp F5           &kp F6          &kp F7            &kp F8             &kp F9           &kp F10     &none
+&none       &sk LEFT_GUI  &sk LEFT_ALT  &sk LEFT_CONTROL  &sk LEFT_SHIFT  &sk RIGHT_ALT    &kp F5          &kp F12           &kp F10            &kp F11          &none       &none
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3    &bt BT_SEL 4     &studio_unlock  &kp C_PREVIOUS    &kp C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT  &none
+                                        &trans            &trans          &trans           &kp C_STOP      &kp C_PLAY_PAUSE  &kp C_MUTE
             >;
         };
     };
